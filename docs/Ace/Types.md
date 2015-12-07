@@ -16,10 +16,13 @@ data BackgroundTokenizerEvent
 
 ``` purescript
 data DocumentEventType
-  = InsertLines
-  | InsertText
-  | RemoveLines
-  | RemoveText
+  = Insert
+  | Remove
+```
+
+##### Instances
+``` purescript
+instance documentEventTypeIsForeign :: IsForeign DocumentEventType
 ```
 
 #### `showDocumentEventType`
@@ -37,8 +40,8 @@ readDocumentEventType :: String -> F DocumentEventType
 #### `DocumentEvent`
 
 ``` purescript
-data DocumentEvent
-  = DocumentEvent DocumentEventType Range (Maybe (Array String)) (Maybe String) (Maybe String)
+newtype DocumentEvent
+  = DocumentEvent { action :: DocumentEventType, start :: Position, end :: Position, lines :: Array String }
 ```
 
 ##### Instances
@@ -88,7 +91,25 @@ type Annotation = { row :: Int, column :: Int, text :: String, type :: String }
 #### `Position`
 
 ``` purescript
-type Position = { row :: Int, column :: Int }
+newtype Position
+  = Position { row :: Int, column :: Int }
+```
+
+##### Instances
+``` purescript
+instance positionIsForeign :: IsForeign Position
+```
+
+#### `getRow`
+
+``` purescript
+getRow :: Position -> Int
+```
+
+#### `getColumn`
+
+``` purescript
+getColumn :: Position -> Int
 ```
 
 #### `TokenInfo`
@@ -204,6 +225,18 @@ data UndoManager
 
 ``` purescript
 data VirtualRenderer
+```
+
+#### `LanguageTools`
+
+``` purescript
+data LanguageTools
+```
+
+#### `Completer`
+
+``` purescript
+data Completer
 ```
 
 

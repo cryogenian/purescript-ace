@@ -720,4 +720,22 @@ destroy :: forall eff. Editor -> Eff (ace :: ACE | eff) Unit
 create :: forall eff. VirtualRenderer -> Maybe EditSession -> Eff (ace :: ACE | eff) Editor
 ```
 
+#### `setMinLines`
+
+``` purescript
+setMinLines :: forall eff. Int -> Editor -> Eff (ace :: ACE | eff) Unit
+```
+
+#### `setMaxLines`
+
+``` purescript
+setMaxLines :: forall eff. Int -> Editor -> Eff (ace :: ACE | eff) Unit
+```
+
+#### `setAutoScrollEditorIntoView`
+
+``` purescript
+setAutoScrollEditorIntoView :: forall eff. Boolean -> Editor -> Eff (ace :: ACE | eff) Unit
+```
+
 
